@@ -2,16 +2,11 @@
 
 
 
-CLIPS <- function(gDNAs_blast_,User_working_dir) {
- 
+CLIPS <- function(gDNAs_blast_, User_working_dir) {
  genomes <- as.vector(unique(gDNAs_blast_[,1]));
-
  self_idx <- which(gDNAs_blast_[,1] == gDNAs_blast_[,2])
  g_selfs <- gDNAs_blast_[self_idx,]
-
-  g_selfs <- g_selfs[(g_selfs[,7] - g_selfs[,9] + g_selfs[,8] - g_selfs[,10] != 0),]
-
- 
+ g_selfs <- g_selfs[(g_selfs[,7] - g_selfs[,9] + g_selfs[,8] - g_selfs[,10] != 0),]
  gDNAs_blast_0 <- gDNAs_blast_[-self_idx,]
 
  n_g <- length(genomes)  
@@ -27,10 +22,7 @@ CLIPS <- function(gDNAs_blast_,User_working_dir) {
  colnames(b_matrix) <- genomes
  rownames(b_matrix) <- genomes
 
- write.table(round(b_matrix,2), file = paste(User_working_dir, 'slop_matrix_output_from_CLIPS.txt', sep = ''),row.names=TRUE,col.names=TRUE,quote = FALSE,sep="\t")
-
-# h_c <- hclust( dist(round(b_matrix,2) ) )
-# return (h_c)
+ write.table(round(b_matrix, 2), file = paste(User_working_dir, 'slop_matrix_output_from_CLIPS.txt', sep = ''), row.names = TRUE, col.names = TRUE, quote = FALSE, sep = "\t")
 }
 
 Slope_by_HSPs <- function(gDNAs_, g1_, g2_, g1_self_, g2_self_) {
@@ -63,13 +55,10 @@ Remove_CrossOverMatch <- function(gDNAs_, g1_self_, g2_self_) {
 }
 
 ###
-User_working_dir<-"/mnt/946c1663-fcbd-4a78-8887-c55f23c5b496/bszhang/script/For_github_upload/"
+User_working_dir <- "./"
 
-Gene<-"TraesCS4A02G058900"
+Gene <- "TraesCS4A02G058900"
 
 gDNAs_blast <- read.table(paste(User_working_dir, Gene, '_Haplotype-Self_out_m8', sep = ''), sep = '\t', header = F, stringsAsFactors = F);
 
 CLIPS(gDNAs_blast,User_working_dir)
-
-#library(dendextend)
-#as.dendrogram(h_c) %>% set("labels_cex", 0.9) %>% highlight_branches %>% plot(main = "CLIPS",ylab = "Height",horiz = FALSE);
