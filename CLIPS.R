@@ -1,19 +1,3 @@
-### The CLIPS algorithm groups DNA segments sharing the same set of indels together. 
-### The required file (format) for running CHOICE is a BLASTN report with -outfmt 6, "TraesCS4A02G058900_Haplotype-Self_out_m8.txt" provided in this test example. 
-
-# Test example:
-
-# R working dir:
-
-User_working_dir<-"/XXX/XXXXX/XX/"
-
-# Gene ID:
-
-Gene<-"TraesCS4A02G058900"
-
-gDNAs_blast <- read.table(paste(User_working_dir, Gene, '_Haplotype-Self_out_m8', sep = ''), sep = '\t', header = F, stringsAsFactors = F);
-
-
 # The CLIPS function start
 
 CLIPS <- function(gDNAs_blast_, User_working_dir) {
@@ -38,7 +22,8 @@ CLIPS <- function(gDNAs_blast_, User_working_dir) {
  colnames(b_matrix) <- genomes
  rownames(b_matrix) <- genomes
 
- write.table(round(b_matrix,2), file = paste(User_working_dir, 'slope_matrix_output_from_CLIPS.txt', sep = ''),row.names=TRUE,col.names=TRUE,quote = FALSE,sep="\t")
+ write.table(round(b_matrix,2), file = paste(User_working_dir, 'slope_matrix_output_from_CLIPS.txt', sep = ''), row.names= T,  col.names = T, quote = FALSE, sep="\t")
+ return (b_matrix)
 }
 
 Slope_by_HSPs <- function(gDNAs_, g1_, g2_, g1_self_, g2_self_) {
@@ -72,14 +57,14 @@ Remove_CrossOverMatch <- function(gDNAs_, g1_self_, g2_self_) {
 
 # The CLIPS function end
 
-# Run the following function, there will be one output file in your working dir:
-# slope_matrix_output_from_CLIPS.txt, slope matrix estimated by CLIPS.
+library(dendextend)
 
-CLIPS(gDNAs_blast, User_working_dir)
+cwd <- "./"
+Gene <- "TraesCS4A02G058900"
 
-# You may view the tree with the following commands:
+gDNAs_blast <- read.table(paste(cwd, 'demo/', Gene, '_seg-Self_out_m6.txt', sep = ''), sep = '\t', header = F, stringsAsFactors = F);
+b_matrix <- CLIPS(gDNAs_blast, cwd)
 
-# library(dendextend)
-# b_matrix <- read.table(paste(User_working_dir, 'slope_matrix_output_from_CLIPS.txt', sep = ''), header=T, sep="\t");
-# h_c <- hclust( dist(b_matrix ) )
-# as.dendrogram(h_c) %>% set("labels_cex", 0.9) %>% highlight_branches %>% plot(main = "CLIPS output", ylab = "Height", horiz = F);
+h_c <- hclust( dist(b_matrix ) )
+as.dendrogram(h_c) %>% set("labels_cex", 0.9) %>% highlight_branches %>% plot(main = "CLIPS output", ylab = "Height", horiz = F);
+
