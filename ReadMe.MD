@@ -20,9 +20,9 @@ CLIPS, Clustering via Large-Indel Permuted Slopes, groups these segments sharing
 #### Demonstration
 (R libaray *dendextend* and *data.table* are required to go through the demonstration)
 
-TraesCS4A02G058900 in chromosome 4A of Chinese Spring is used as the demonstration. 
+TraesCS4A02G058900 in chromosome 4A of **Chinese Spring** is used as the demonstration. 
 
-CDS of TraesCS4A02G058900 is used to blast agains chr4A of each wheat assembly (11 in total) via Blastn with -outfmt 6. The blastn output is reorgzined as [TraesCS4A02G058900_syn.txt](./demo/TraesCS4A02G058900_syn.txt), which is the input for _CHOICE_. _CHOICE_ which will determine the region of each assembly contain the ortholog. For example, the coordinates for variety **spelta** are from 52,231,267 to 52,245,777, while are from 52,859,043 to 52,873,560 for variety *lancer*. The coordinates will be then used to exact the corresponding segment out from each assembile. Two output files (CHOICE_summary.txt and Filtered_By_CHOICE.txt) will be also saved.
+CDS of TraesCS4A02G058900 is used to blast agains chr4A of each wheat assembly (11 in total) via Blastn with -outfmt 6. The blastn output is reorgzined as [TraesCS4A02G058900_syn.txt](./demo/TraesCS4A02G058900_syn.txt), which is the input for _CHOICE_. _CHOICE_ which will determine the region of each assembly contain the ortholog. For example, the coordinates for variety **spelta** are from 52,231,267 to 52,245,777, while are from 52,859,043 to 52,873,560 for variety **lancer**. The coordinates will be then used to exact the corresponding segment out from each assembile. Two output files (CHOICE_summary.txt and Filtered_By_CHOICE.txt) will be also saved.
 
 These segments are then blasted against each other to identify HSP via Blastn (-outfmt 6). The output file [TraesCS4A02G058900_seg-Self_out_m6.txt](./demo/TraesCS4A02G058900_seg-Self_out_m6.txt) is then fed into _CLIPS_. The clusting tree suggests two main haplotypes for this genes, one is represented by **Chinese Spring**, while all other varieties share another haplotype. One out file "slope_matrix_output_from_CLIPS.txt" will be also saved. 
 
