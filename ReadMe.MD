@@ -13,7 +13,7 @@ _CHOICE_ and _CLIPS_ are developed to tackle these two challenges, respectively.
 _CHOICE_, Clustering HSPs for Ortholog Identification via Coordinates and Equivalence, identifies and extracts the segment harboring the ortholog from each assembly.
 ![CHOICES](./figs/CHOICE.png)
 
-CLIPS, Clustering via Large-Indel Permuted Slopes, groups these segments sharing the same set of indels into haplotypes. 
+CLIPS, Clustering via Large-Indel Permuted Slopes, groups these segments sharing the same set of indels into haplotypes. For a pair of segments, the slope estimate will be one when large indels are absent, but will devirate from one when large indels are present.
 ![CLIPS](./figs/CLIPS.png)
 
 
