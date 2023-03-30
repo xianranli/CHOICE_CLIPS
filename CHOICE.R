@@ -1,18 +1,7 @@
-
-# CHOICE algorithm in BRIDGEcereal is to select candidate HSPs on target chromosome from all HSPs based on blastn. 
-# The required file (format) for running CHOICE contains 9 columns: "query query_start query_end Genome  chromosome  subject_start subject_end size  similarity"; Such as "TraesCS4A02G058900_Haplotype_syn" provided in this test example. 
-
-# Test example:
-
-# R working dir:
 library(data.table)
-              
-# The CHOICE function start
-
-CHOICE<- function(User_working_dir, BlastSynWorking, query_length, distance_filter, Min_CDS_size_filter, Max_CDS_size_filter, ref_g) {
+# The CHOICE function starts
+CHOICE<- function(cwd, CHOICE_input, query_length, distance_filter, Min_CDS_size_filter, Max_CDS_size_filter, ref_g) {
  
- CHOICE_input <- BlastSynWorking
-
  CHOICE_output_list <- list() 
  CHOICE_cluster_list <- list() 
 
@@ -40,7 +29,7 @@ CHOICE<- function(User_working_dir, BlastSynWorking, query_length, distance_filt
   
    Similarity_filter <- 1
    if(length(Size_filter) > 1) {                                                               
-    Similarity_filter <- which( MeanSimilarity_cdsSize[, 1] ==  max( MeanSimilarity_cdsSize[Size_filter,][, 1] ) ) 
+    Similarity_filter <- which( MeanSimilarity_cdsSize[, 1] == max( MeanSimilarity_cdsSize[Size_filter, 1]) ) 
     } 
     
    Target_cluster <- intersect(Size_filter, Similarity_filter)
@@ -48,7 +37,7 @@ CHOICE<- function(User_working_dir, BlastSynWorking, query_length, distance_filt
     Ideal_Size <- 1
     Target_cluster <- which( abs(MeanSimilarity_cdsSize[, 2] - Ideal_Size) == min( abs(MeanSimilarity_cdsSize[, 2] - Ideal_Size) ) )
     } else if (length(Target_cluster) > 1) {
-      Target_cluster <- which( MeanSimilarity_cdsSize[, 1] == max(MeanSimilarity_cdsSize[Target_cluster,][, 1])  )
+      Target_cluster <- which( MeanSimilarity_cdsSize[, 1] == max(MeanSimilarity_cdsSize[Target_cluster, 1])  )
       }
 
    CHOICE_output_list[[index_genome]] <- Target_g[ which( cut_tree == Target_cluster), ]
@@ -78,28 +67,21 @@ CHOICE<- function(User_working_dir, BlastSynWorking, query_length, distance_filt
   Filtered_By_CHOICE <- as.data.frame(rbindlist(CHOICE_output_list))
   CHOICE_summary_table <- as.data.frame(rbindlist(CHOICE_cluster_list))
    
-  write.table(Filtered_By_CHOICE, file = paste(User_working_dir, "Filtered_By_CHOICE.txt", sep=''), sep= "\t", quote = FALSE, row.names = FALSE )
-  write.table(CHOICE_summary_table, file = paste(User_working_dir,"CHOICE_summary.txt", sep=''), sep= "\t", quote = FALSE, row.names = FALSE )
+  write.table(Filtered_By_CHOICE, file = paste(cwd, "Filtered_By_CHOICE.txt", sep=''), sep= "\t", quote = FALSE, row.names = FALSE )
+  write.table(CHOICE_summary_table, file = paste(cwd,"CHOICE_summary.txt", sep=''), sep= "\t", quote = FALSE, row.names = FALSE )
  }
-# The CHOICE function end
+# The CHOICE function ends
 
+##### these are the demon code
 cwd <- "./"
 Gene <- "TraesCS4A02G058900" # Wheat example
+ref_g <- "IWGSC" # Wheat reference genome
 query_length <- 513  # the CDS size from the reference genome
-
-# input file name:
-
-BlastSynWorking <- read.table( paste(cwd, 'demo/', Gene, "_Haplotype_syn.txt", sep=''), header = T) # file TraesCS4A02G058900_Haplotype_syn
-
-# reference genome:
-
-ref_g <- "IWGSC" # Wheat 
-
 # the following 3 parameters are used in BRIDGEcereal webapp (sliderbars), and can be adjusted in some cases.
-
 distance_filter <- 20*1000 # distance filter (20 kb)
-
 Min_CDS_size_filter <- 0.75 # lowboundary for CDS/query_length value
 Max_CDS_size_filter <- 1.25 # upboundary for CDS/query_length value
+
+BlastSynWorking <- read.table( paste(cwd, 'demo/', Gene, "_Haplotype_syn.txt", sep=''), header = T) # file TraesCS4A02G058900_Haplotype_syn
 
 CHOICE(cwd, BlastSynWorking, query_length, distance_filter, Min_CDS_size_filter, Max_CDS_size_filter, ref_g)

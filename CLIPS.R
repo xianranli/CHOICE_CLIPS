@@ -1,6 +1,5 @@
-# The CLIPS function start
-
-CLIPS <- function(gDNAs_blast_, User_working_dir) {
+# The CLIPS function starts
+CLIPS <- function(gDNAs_blast_, cwd) {
  genomes <- as.vector(unique(gDNAs_blast_[, 1]));
  self_idx <- which(gDNAs_blast_[, 1] == gDNAs_blast_[, 2])
 
@@ -22,7 +21,7 @@ CLIPS <- function(gDNAs_blast_, User_working_dir) {
  colnames(b_matrix) <- genomes
  rownames(b_matrix) <- genomes
 
- write.table(round(b_matrix,2), file = paste(User_working_dir, 'slope_matrix_output_from_CLIPS.txt', sep = ''), row.names= T,  col.names = T, quote = FALSE, sep="\t")
+ write.table(round(b_matrix,2), file = paste(cwd, 'slope_matrix_output_from_CLIPS.txt', sep = ''), row.names = T,  col.names = T, quote = FALSE, sep="\t")
  return (b_matrix)
 }
 
@@ -54,11 +53,12 @@ Remove_CrossOverMatch <- function(gDNAs_, g1_self_, g2_self_) {
  if (length(rep_tag) > 0) { gDNAs_ <- gDNAs_[-unique(rep_tag), ] }
  return(gDNAs_);
 }
+# The CLIPS function ends
 
-# The CLIPS function end
+
+##### these are the demon code
 
 library(dendextend)
-
 cwd <- "./"
 Gene <- "TraesCS4A02G058900"
 
