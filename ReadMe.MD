@@ -1,9 +1,7 @@
 #### Introduction
-_CHOICE_ and _CLIPS_ are two unsupervised learning mechanisms developed to implement [BRIDGEcereal](https://bridgecereal.scinet.usda.gov/) webapp, which is constructed to survey and graph large indel based haplotype graph from publicly accessible pan-genomes for a gene of interest.
+_CHOICE_ and _CLIPS_ are two unsupervised learning algorithms developed to implement [BRIDGEcereal](https://bridgecereal.scinet.usda.gov/) webapp, which is constructed to survey and graph large indel based haplotype graph from publicly accessible pan-genomes for a gene of interest.
 
-A large indel, if presents, is indicated by two flanking High-scoring Segment Pairs (HSPs) for a pair of segments identified by [Blastn](https://www.ncbi.nlm.nih.gov/books/NBK279690/). A Pan-genome with multiple assemblies enables the possibility to identify large indels from a gene of interest through the desired All-vs-All comparison.
-
-However, two main challenges are:
+A large indel, if presents, is indicated by two flanking High-scoring Segment Pairs (HSPs) for a pair of segments identified by [Blastn](https://www.ncbi.nlm.nih.gov/books/NBK279690/). A Pan-genome with multiple assemblies enables the possibility to identify large indels from a gene of interest through the desired All-vs-All comparison. However, two main challenges are:
 1. Identification of the segment containing the ortholog from each assembly.
 2. Visualization of identified indels from a large number of assemblies.
 
