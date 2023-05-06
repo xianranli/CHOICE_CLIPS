@@ -11,7 +11,7 @@ _CHOICE_ and _CLIPS_ are developed to tackle these two challenges, respectively.
 _CHOICE_, Clustering HSPs for Ortholog Identification via Coordinates and Equivalence, identifies and extracts the segment harboring the ortholog from each assembly.
 ![CHOICES](./figs/CHOICE.png)
 
-CLIPS, Clustering via Large-Indel Permuted Slopes, groups these segments sharing the same set of indels into haplotypes. For a pair of segments, the slope estimate will be one when large indels are absent, but will devirate from one when large indels are present.
+CLIPS (Clustering via Large-Indel Permuted Slopes) groups segments sharing the same set of indels into haplotypes. For a pair of segments, the slope estimate is one when large indels are absent, but deviates from one when large indels are present.
 ![CLIPS](./figs/CLIPS.png)
 
 #### Demonstration CHOICE with TraesCS4A02G058900 in chromosome 4A of **Chinese Spring**
@@ -22,7 +22,6 @@ CDS of TraesCS4A02G058900 is searched against chr4A of each assembly (11 in tota
 These segments are then blasted against each other via Blastn (-outfmt 6). The output file [TraesCS4A02G058900_seg-Self_out_m6.txt](./data/TraesCS4A02G058900_seg-Self_out_m6.txt) is then fed into _CLIPS_. The clustering tree suggests two main haplotypes for this gene: one is only detected in by **Chinese Spring**, while another haplotype is shared by all other varieties. One output file "slope_matrix_output_from_CLIPS.txt" will be also saved. 
 
 #### Illustration of CLIPS
-Visulize the alignments and slope estimates through adjusting HSP parameters. [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/xianranli/CHOICE_CLIPS/blob/main/CLIPS_illustration.ipynb)
+Visualize the alignments and slope estimates by adjusting HSP parameters in the first coding block. [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/xianranli/CHOICE_CLIPS/blob/main/CLIPS_illustration.ipynb)
 
 #### Citation
-Zhang B, Huang H, Tibbs-Cortes LE, Vanous A, Zhang Z, Sanguinet K, Garland-Campbell KA, Yu J, Li X. [Streamline unsupervised machine learning to survey and graph indel-based haplotypes from pan-genomes](https://doi.org/10.1101/2023.02.11.527743). bioRxiv. 2023. doi: 10.1101/2023.02.11.527743
