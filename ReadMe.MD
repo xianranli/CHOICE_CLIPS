@@ -25,3 +25,4 @@ These segments are then blasted against each other via Blastn (-outfmt 6). The o
 Visualize the alignments and slope estimates by adjusting HSP parameters in the first coding block. [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/xianranli/CHOICE_CLIPS/blob/main/CLIPS_illustration.ipynb)
 
 #### Citation
+Zhang B, Huang H, Tibbs-Cortes LE, Vanous A, Zhang Z, Sanguinet K, Garland-Campbell KA, Yu J, Li X. Streamline unsupervised machine learning to survey and graph indel-based haplotypes from pan-genomes. bioRxiv. 2023. doi: [10.1101/2023.02.11.527743](https://doi.org/10.1101/2023.02.11.527743)
