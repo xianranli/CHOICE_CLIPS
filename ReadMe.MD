@@ -26,5 +26,10 @@ These segments are then blasted against each other via Blastn (-outfmt 6). The o
 ```python
 <iframe src="https://colab.research.google.com/github/xianranli/CHOICE_CLIPS/blob/master/CLIPS_illustration.ipynb" height="500px" width="100%"></iframe>
 `
+```python
+# This is a code block with Python code
+x = 5
+y = 10
+print(x + y)
 #### Citation
 Zhang B, Huang H, Tibbs-Cortes LE, Vanous A, Zhang Z, Sanguinet K, Garland-Campbell KA, Yu J, Li X. [Streamline unsupervised machine learning to survey and graph indel-based haplotypes from pan-genomes](https://doi.org/10.1101/2023.02.11.527743). bioRxiv. 2023. doi: 10.1101/2023.02.11.527743
