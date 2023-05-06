@@ -23,7 +23,6 @@ CDS of TraesCS4A02G058900 is searched against chr4A of each assembly (11 in tota
 These segments are then blasted against each other via Blastn (-outfmt 6). The output file [TraesCS4A02G058900_seg-Self_out_m6.txt](./data/TraesCS4A02G058900_seg-Self_out_m6.txt) is then fed into _CLIPS_. The clustering tree suggests two main haplotypes for this gene: one is only detected in by **Chinese Spring**, while another haplotype is shared by all other varieties. One output file "slope_matrix_output_from_CLIPS.txt" will be also saved. 
 
 #### Illustration of CLIPS
-```python
 <iframe src="https://colab.research.google.com/github/xianranli/CHOICE_CLIPS/blob/master/CLIPS_illustration.ipynb" height="500px" width="100%"></iframe>
 
 #### Citation
